@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Layout, Alert, Spin } from 'antd'
+import { Button, Layout, Alert, Spin, Input, Form } from 'antd'
 import styled from 'styled-components'
 import { useUser } from '../../hooks/useUser'
 import configs from '../../configs/configs'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 import { setHeader } from '../../libs/axios'
-import { useLogin } from '../../api/auth'
+import { useEmailLogin, useLogin } from '../../api/auth'
 
 const StyledAlert = styled(Alert)`
   text-align: center;
@@ -41,61 +41,98 @@ const LoginPage = () => {
     )
   }
 
-  const useAuth = useLogin()
+  // const login = useLogin()
+  // const handleSetAuth = (code: string) => {
+  //   if (code) {
+  //     setIsLoading(true)
+  //     useAuth.mutate(
+  //       { code },
+  //       {
+  //         onSuccess: (data) => {
+  //           setHeader(data.data.access_token.token)
+  //           login(data.data.access_token?.token, data.data.refresh_token?.token)
+  //           setIsLoading(false)
+  //         },
+  //         onError: () => {
+  //           setIsLoading(false)
+  //         }
+  //       }
+  //     )
+  //   }
+  // }
 
-  const handleSetAuth = (code: string) => {
-    if (code) {
-      setIsLoading(true)
-      useAuth.mutate(
-        { code },
-        {
-          onSuccess: (data) => {
-            setHeader(data.data.access_token.token)
-            login(data.data.access_token?.token, data.data.refresh_token?.token)
-            setIsLoading(false)
-          },
-          onError: () => {
-            setIsLoading(false)
-          }
+  // useEffect(() => {
+  //   if (code) {
+  //     if (window.location.origin === 'https://nlp-backoffice.web.app' || window.location.origin === "https://knlpweb-dev.kasikornbank.com") {
+  //       const forLocalDev = confirm("For Dev Local ? ")
+  //       forLocalDev ? setForLocalDev(true) : handleSetAuth(String(code))
+  //     } else {
+  //       handleSetAuth(String(code))
+  //     }
+  //   }
+  // }, [code])
+
+  const [form] = Form.useForm()
+
+  const loginWithEmail = useEmailLogin()
+
+  const handleLogin = (values: { email: string }) => {
+    setIsLoading(true)
+    
+    loginWithEmail.mutate(
+      { email: values.email },
+      {
+        onSuccess: (data) => {
+          setHeader(data.data.access_token.token)
+          login(data.data.access_token?.token, data.data.refresh_token?.token)
+          setIsLoading(false)
+        },
+        onError: () => {
+          setIsLoading(false)
         }
-      )
-    }
-  }
-
-  useEffect(() => {
-    if (code) {
-      if (window.location.origin === 'https://nlp-backoffice.web.app' || window.location.origin === "https://knlpweb-dev.kasikornbank.com") {
-        const forLocalDev = confirm("For Dev Local ? ")
-        forLocalDev ? setForLocalDev(true) : handleSetAuth(String(code))
-      } else {
-        handleSetAuth(String(code))
       }
-    }
-  }, [code])
-
+    )
+  }
   return (
-    <Layout>
-      <Spin spinning={isLoading}>
-      <StyledLoginLayout>
-        <StyledLoginHeader>
-          KNLP Chatbot
-        </StyledLoginHeader>
-        {forLocalDev && code}
-        {errMsg && (
-          <StyledAlert
-            message={errMsg}
-            type="error"
-            showIcon
-            closable
-            onClose={clearErrMsg}
-          />
-        )}
-        <Button type="primary" onClick={redirect}>
-          Sign in
-        </Button>
-      </StyledLoginLayout>
-      </Spin>
-    </Layout>
+    <Form
+      form={form}
+      onFinish={handleLogin}
+    >
+      <Layout>
+        <Spin spinning={isLoading}>
+        <StyledLoginLayout>
+          <StyledLoginHeader>
+            KNLP Chatbot
+          </StyledLoginHeader>
+          {forLocalDev && code}
+          {errMsg && (
+            <StyledAlert
+              message={errMsg}
+              type="error"
+              showIcon
+              closable
+              onClose={clearErrMsg}
+            />
+          )}
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Email is required.',
+              },
+            ]}
+          >
+            <Input placeholder="Email" allowClear />
+          </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Sign in
+          </Button>
+        </StyledLoginLayout>
+        </Spin>
+      </Layout>
+    </Form>
   )
 }
 export default LoginPage

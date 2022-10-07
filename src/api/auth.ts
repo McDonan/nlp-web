@@ -62,3 +62,26 @@ export const useLogin = (): UseMutationResult<
   )
   return mutation
 }
+
+export const useEmailLogin = (): UseMutationResult<
+  AxiosResponse<AuthCodeResponse, unknown>,
+  unknown,
+  { email: string },
+  unknown
+> => {
+  const { onError } = useErrorMessage()
+
+  const axios = useAxios()
+  const mutation = useMutation(
+    ({ email }: { email: string }) =>
+      axios.post(`/login-email`, {
+        email,
+      }),
+    {
+      onError: (error) => {
+        onError(error)
+      },
+    }
+  )
+  return mutation
+}
