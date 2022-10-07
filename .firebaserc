@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "webapp-258009"
+  },
+  "targets": {
+    "webapp-258009": {
+      "hosting": {
+        "nlp-backoffice": [
+          "nlp-backoffice"
+        ]
+      }
+    }
+  }
+}
