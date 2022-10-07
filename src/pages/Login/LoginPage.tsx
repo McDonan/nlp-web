@@ -124,7 +124,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input placeholder="Email" allowClear />
+            <Input placeholder="user796.02-004@kasikornthaibank.in.th" allowClear />
           </Form.Item>
           <Button type="primary" htmlType="submit">
             Sign in
