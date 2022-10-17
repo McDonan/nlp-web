@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { ChannelJSON } from '../../types/channel'
-import { StyledSpan, StyledColLogoContainer } from './StyledComponents'
+import { StyledSpan, StyledColLogoContainer } from '../StyledComponents'
 
 type Props = {
   channel: ChannelJSON
-  selectChannel: any
+  selectChannel: boolean
 }
 
 const CurrentChannel: React.FC<Props> = ({ channel, selectChannel }) => {
