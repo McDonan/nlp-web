@@ -12,13 +12,14 @@ import {
   BranchesOutlined,
 } from '@ant-design/icons'
 
-import { StyledMenu } from './StyledComponents'
+import { StyledMenu } from '../StyledComponents'
+import { User } from '../../types/users'
 
 type Props = {
-  userData: any
+  userData: User | undefined
   logout: any
   accessPermission: any
-  selectChannel: any
+  selectChannel: boolean
 }
 
 const UserMenu: React.FC<Props> = ({
