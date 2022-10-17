@@ -4,7 +4,7 @@ import { useUser } from '../../hooks/useUser'
 import HeaderLogo from './HeaderLogo'
 import CurrentChannel from './CurrentChannel'
 import UserMenu from './UserMenu'
-import { StyledRow } from './StyledComponents'
+import { StyledRow } from '../StyledComponents'
 
 const MenuHeader: React.FC = () => {
   const { token, userData, logout, channel, accessPermission } = useUser()
