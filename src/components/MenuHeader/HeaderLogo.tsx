@@ -5,7 +5,7 @@ import {
   StyledSpanBold,
   StyledTitle,
   StyledColLogoContainer,
-} from './StyledComponents'
+} from '../StyledComponents'
 
 const HeaderLogo = () => {
   return (
