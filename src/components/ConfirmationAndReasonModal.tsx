@@ -1,43 +1,34 @@
 import { Modal, Row, Col, Input } from 'antd'
-import { LegacyButtonType } from 'antd/lib/button/button'
 import React, { useEffect, useState } from 'react'
+import { User } from '../types/users'
+import { StyledExclamationCircleOutlined } from '../components/StyledComponents'
 
 type Props = {
-  title: React.ReactNode | string
-  description?: string
-  icon?: React.ReactNode | null
+  selectedRecord?: User
   showModal: boolean
   modalLoading: boolean
-  requireReason: boolean
-  okText?: string
-  okType?: LegacyButtonType
-  cancelText?: string
+  toStatus: boolean
   onOk?: () => void
   onCancel?: () => void
   setReasonText: (newReasonText: string) => void
 }
 
 const ConfirmationAndReasonModal = ({
-  title,
-  description,
-  icon,
+  selectedRecord,
   showModal,
   modalLoading,
-  requireReason,
-  okText = 'Confirm',
-  okType = 'primary',
-  cancelText = 'Cancel',
   setReasonText,
+  toStatus,
   onOk,
   onCancel,
 }: Props) => {
   const { TextArea } = Input
-  const [canSubmit, setCanSubmit] = useState<boolean>(!requireReason)
+  const [canSubmit, setCanSubmit] = useState<boolean>(toStatus)
 
   const emptyCheck = (text: string | undefined) =>
     text === null || text === undefined || text.match(/^ *$/) !== null
 
-  const onReasonChange = (e: any) => {
+  const onReasonChange = (e: string | any) => {
     setReasonText(e.target.value)
     setCanSubmit(!emptyCheck(e.target.value))
   }
@@ -49,24 +40,40 @@ const ConfirmationAndReasonModal = ({
     <Modal
       title={
         <Row align="middle">
-          {icon && <Col span={2}>{icon}</Col>}
-          <Col span={icon ? 22 : 24}>{title}</Col>
+          {
+            <Col span={2}>
+              <StyledExclamationCircleOutlined />
+            </Col>
+          }
+          <Col span={22}>
+            {`Are you sure you would like to change status user "${
+              selectedRecord?.name ?? ''
+            }" ?`}
+          </Col>
         </Row>
       }
       maskClosable={false}
       closable={false}
-      okText={okText}
-      okType={okType}
+      okText="Change"
+      cancelText="Cancel"
+      okType="primary"
       okButtonProps={{ disabled: !canSubmit }}
-      cancelText={cancelText}
       onOk={onOk}
       onCancel={onCancel}
       visible={showModal}
       confirmLoading={modalLoading}
       getContainer={false}
     >
-      {description}
-      {requireReason && (
+      {`${selectedRecord?.name ?? 'User'}'s status will change to ${
+        toStatus ? 'active' : 'inactive'
+      }. ${
+        !toStatus
+          ? `Please specify the reason for disabling User ${
+              selectedRecord?.name ?? 'name not found'
+            } (${selectedRecord?.employee_id ?? ''}).`
+          : ''
+      }`}
+      {!toStatus && (
         <TextArea
           onChange={onReasonChange}
           placeholder="Reason"
