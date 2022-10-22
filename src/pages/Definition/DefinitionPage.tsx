@@ -464,12 +464,9 @@ const DefinitionPage = (): JSX.Element => {
                     : ''
                 }" definition ?`}
                 description="All reference datasets of this definition will be deleted too."
-                icon={<StyledExclamationCircleOutlined />}
                 okText="Delete"
-                cancelText="Cancel"
                 showModal={showConfirmationModal}
                 modalLoading={confirmationModalLoading}
-                okType="danger"
                 onOk={() => {
                   if (showVerifyModal) {
                     handleDeleteImport()

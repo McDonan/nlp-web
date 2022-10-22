@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { Col, Row, Space, Spin, Typography, Input } from 'antd'
+import { Col, Space, Spin, Typography } from 'antd'
 import Button from 'antd-button-color'
 const { Title } = Typography
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 import { Channel, ChannelForm, ChannelSort } from '../../types/channel'
 import {
   useGetChannel,
@@ -14,33 +13,18 @@ import {
 import { PAGES, LIMIT, DEFAULT_PAGE_SIZE } from '../../configs/constants'
 import ChannelTable from './components/ChannelTable'
 import ChannelFormModal from './components/ChannelFormModal'
-
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 //got permission
 import { useUser } from '../../hooks/useUser'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 
-const { Search } = Input
+import {
+  StyledRowMenu,
+  StyledColSearch,
+  StyledSearch,
+} from '../../components/StyledComponents'
 
-const StyledRowMenu = styled(Row)`
-  padding-bottom: 15px;
-  width: 100%;
-  justify-content: space-between;
-`
-
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
-
-const StyledColSearch = styled(Col)`
-  text-align: right;
-`
-
-const StyledSearch = styled(Search)`
-  width: 250px;
-`
 const ChannelPage = () => {
   const { accessPermission } = useUser()
   //Permission Constant
@@ -205,17 +189,12 @@ const ChannelPage = () => {
           {showConfirmationModal && (
             <ConfirmationModal
               title={`Are you sure you would like to disable the "${
-                selectedRecord?.name ? selectedRecord?.name : ''
+                selectedRecord?.name ?? ''
               }" channel ?`}
-              description={`Disable ${
-                selectedRecord?.name ? selectedRecord?.name : ''
-              } channel`}
-              icon={<StyledExclamationCircleOutlined />}
+              description={`Disable ${selectedRecord?.name ?? ''} channel`}
               okText="Disable"
-              cancelText="Cancel"
               showModal={showConfirmationModal}
               modalLoading={confirmationModalLoading}
-              okType="danger"
               onOk={() => {
                 if (selectedRecord?.id) {
                   handleConfirmationModalLoading(true)

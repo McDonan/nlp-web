@@ -190,6 +190,7 @@ const KnowledgePage = (): JSX.Element => {
   const handleDownloadFile = () => {
     let success = false
     let conditionPass = false
+
     if (
       isExport &&
       exportType &&
@@ -201,6 +202,7 @@ const KnowledgePage = (): JSX.Element => {
       conditionPass = true
       success = downloadFileFromBlob(dataExportFile, 'knowledge', exportType)
     }
+
     if (success) {
       setIsExport(false)
     } else if (conditionPass) {
@@ -262,12 +264,9 @@ const KnowledgePage = (): JSX.Element => {
                   selectedRecord?.name ? selectedRecord?.name : ''
                 }" knowledge ?`}
                 description="All reference of this knowledge will be deleted too."
-                icon={<StyledExclamationCircleOutlined />}
                 okText="Delete"
-                cancelText="Cancel"
                 showModal={showConfirmationModal}
                 modalLoading={confirmationModalLoading}
-                okType="danger"
                 onOk={() => {
                   if (selectedRecord?.id) {
                     handleConfirmationModalLoading(true)

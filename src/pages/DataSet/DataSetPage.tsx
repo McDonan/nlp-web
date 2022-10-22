@@ -65,10 +65,6 @@ const StyledColMenu = styled(Col)`
   align-items: end;
 `
 
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
 const DataSetPage = () => {
   const { accessPermission } = useUser()
 
@@ -639,12 +635,9 @@ const DataSetPage = () => {
                       : ''
                   }" dataset ?`}
                   description="All of reference dataset of this dataset will be deleted too."
-                  icon={<StyledExclamationCircleOutlined />}
                   okText="Delete"
-                  cancelText="Cancel"
                   showModal={showConfirmationModal}
                   modalLoading={confirmationModalLoading}
-                  okType="danger"
                   onOk={() => {
                     if (showVerifyModal) {
                       handleDeleteImport()
@@ -665,12 +658,9 @@ const DataSetPage = () => {
                     selectedRecord?.text ? selectedRecord?.text : ''
                   }" definition ?`}
                   description="All of reference dataset of this definition will be deleted too."
-                  icon={<StyledExclamationCircleOutlined />}
                   okText="Delete"
-                  cancelText="Cancel"
                   showModal={showConfirmationBulkModal}
                   modalLoading={confirmationBulkModalLoading}
-                  okType="danger"
                   onOk={() => {
                     if (isMultipleSelect) {
                       handleBulkDeleteDataSet()
