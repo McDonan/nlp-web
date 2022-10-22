@@ -8,6 +8,11 @@ import DefinitionSelectField from './DefinitionSelectField'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { DefinitionOnly } from '../../../types/definition'
 
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
+
 type Props = {
   data?: DataSet | undefined
   showModal: boolean
@@ -18,15 +23,6 @@ type Props = {
   definitionList: DefinitionOnly[] | undefined
   definitionLoading: boolean
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const DataSetFormModal = ({
   data,

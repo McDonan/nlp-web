@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Col, Typography, Menu, Row, Input } from 'antd'
+import { Col, Typography, Menu, Row, Input, Alert } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 const { Title } = Typography
@@ -62,4 +62,12 @@ export const StyledExclamationCircleOutlined = styled(
 )`
   font-size: 22px;
   color: #fbb437;
+`
+export const StyledColContainer = styled(Col)`
+  text-align: center;
+`
+
+export const StyledAlert = styled(Alert)`
+  text-align: center;
+  margin-top: 20px;
 `

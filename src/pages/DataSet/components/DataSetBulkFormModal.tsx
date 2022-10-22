@@ -8,6 +8,11 @@ import { DefinitionOnly } from '../../../types/definition'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
 
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
+
 type Props = {
   showModal: boolean
   modalLoading: boolean
@@ -17,14 +22,6 @@ type Props = {
   definitionList: DefinitionOnly[] | undefined
   definitionLoading: boolean
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const DataSetBulkFormModal = ({
   showModal,

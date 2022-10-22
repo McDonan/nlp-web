@@ -7,6 +7,11 @@ import DataSetByDefinitionIDTable from './DataSetByDefinitionIDTable'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
 import CloseModalButton from '../../../components/CloseModalButton'
 
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
+
 const { TextArea } = Input
 
 type Props = {
@@ -17,14 +22,6 @@ type Props = {
   onCloseModal: () => void
   onLoadingModal: (isLoading: boolean) => void
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const DefinitionFormModal = ({
   data,

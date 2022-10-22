@@ -8,6 +8,11 @@ import KnowledgeMembersTable from './KnowledgeMembersTable'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
 
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
+
 type Props = {
   data?: Knowledge | undefined
   showModal: boolean
@@ -16,15 +21,6 @@ type Props = {
   onCloseModal: () => void
   onLoadingModal: (isLoading: boolean) => void
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const KnowledgeModal = ({
   data,
