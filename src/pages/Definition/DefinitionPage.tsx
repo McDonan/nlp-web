@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Col, Row, Space, Input, Spin, Alert } from 'antd'
+import { Col, Space, Spin, Alert } from 'antd'
 import Button from 'antd-button-color'
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 import {
   useGetDefinition,
   useExportDefinition,
@@ -37,24 +37,11 @@ import ImportButton from '../../components/ImportButton'
 import { useUser } from '../../hooks/useUser'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 
-const { Search } = Input
-
-const StyledRowMenu = styled(Row)`
-  padding-bottom: 15px;
-`
-
-const StyledColSearch = styled(Col)`
-  text-align: right;
-`
-
-const StyledSearch = styled(Search)`
-  width: 250px;
-`
-
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
+import {
+  StyledRowMenu,
+  StyledColSearch,
+  StyledSearch,
+} from '../../components/StyledComponents'
 
 const DefinitionPage = (): JSX.Element => {
   //Got Userpermission
