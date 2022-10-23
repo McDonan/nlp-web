@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Upload, Space, Alert } from 'antd'
+import { Modal, Upload, Space } from 'antd'
 import Button from 'antd-button-color'
-import {
-  ImportOutlined,
-  FileExcelOutlined,
-  FileTextOutlined,
-} from '@ant-design/icons'
+import { ImportOutlined } from '@ant-design/icons'
 import { RcFile, UploadFile } from 'antd/lib/upload/interface'
 import { useErrorMessage } from '../hooks/useErrorMessage'
+
+import {
+  StyledFileExcelOutlined,
+  StyledFileTextOutlined,
+  StyledAlert,
+} from './StyledComponents'
 
 type Props = {
   title: string
@@ -27,18 +29,6 @@ const StyledSpaceContainer = styled(Space)`
   }
 `
 
-const StyledFileExcelOutlined = styled(FileExcelOutlined)`
-  color: #1d6f42 !important;
-`
-
-const StyledFileTextOutlined = styled(FileTextOutlined)`
-  font-size: 30px;
-  color: #2e72f8 !important;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 const ImportButton = ({
   title,
   showModal,

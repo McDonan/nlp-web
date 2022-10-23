@@ -1,12 +1,20 @@
 import styled from 'styled-components'
-import { Col, Typography, Menu, Row, Input, Alert } from 'antd'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { Col, Typography, Menu, Row, Input, Alert, Card } from 'antd'
+import {
+  ExclamationCircleOutlined,
+  FileTextOutlined,
+  FileExcelOutlined,
+} from '@ant-design/icons'
 
 const { Title } = Typography
 const { Search } = Input
 
 type StyledLinkProps = {
   color: string
+}
+
+type StyledCardProps = {
+  background: string
 }
 
 export const StyledSpan = styled.span<StyledLinkProps>`
@@ -70,4 +78,22 @@ export const StyledColContainer = styled(Col)`
 export const StyledAlert = styled(Alert)`
   text-align: center;
   margin-top: 20px;
+`
+
+export const StyledCard = styled(Card)<StyledCardProps>`
+  background: ${(props: { background: string }) => props.background};
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  text-align: center;
+`
+
+export const StyledFileTextOutlined = styled(FileTextOutlined)`
+  font-size: 30px;
+  color: #ffffff;
+`
+
+export const StyledFileExcelOutlined = styled(FileExcelOutlined)`
+  font-size: 30px;
+  color: #ffffff;
 `
