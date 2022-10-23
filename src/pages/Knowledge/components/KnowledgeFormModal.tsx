@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Input, Modal, Row, Space, Alert, Tag } from 'antd'
+import { Col, Form, Input, Modal, Row, Space, Tag } from 'antd'
 import Button from 'antd-button-color'
 import { PlusOutlined } from '@ant-design/icons'
 import { KnowledgeForm, Knowledge } from '../../../types/knowledge'

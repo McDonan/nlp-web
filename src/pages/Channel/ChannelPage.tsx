@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Col, Space, Spin, Typography } from 'antd'
+import React, { useState } from 'react'
+import { Col, Space, Spin } from 'antd'
 import Button from 'antd-button-color'
-const { Title } = Typography
 import { PlusOutlined } from '@ant-design/icons'
 import { Channel, ChannelForm, ChannelSort } from '../../types/channel'
 import {

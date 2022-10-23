@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Input, Modal, Row, Select, Space, Alert } from 'antd'
+import { Col, Form, Input, Modal, Row, Select, Space } from 'antd'
 import Button from 'antd-button-color'
 import { Definition, DefinitionForm } from '../../../types/definition'
 import DataSetByDefinitionIDTable from './DataSetByDefinitionIDTable'
