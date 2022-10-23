@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Col, Row, Space, Spin, Alert } from 'antd'
+import { Col, Space, Spin, Alert } from 'antd'
 import Button from 'antd-button-color'
 import { useLocation } from 'react-router-dom'
-import {
-  PlusOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  ExclamationCircleOutlined,
-} from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import {
   useCreateDataSet,
   useUpdateDataSetMutation,
@@ -52,23 +47,17 @@ import ConfirmationModal from '../../components/ConfirmationModal'
 import { useUser } from '../../hooks/useUser'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 
+import { StyledRowMenu } from '../../components/StyledComponents'
+
 type Props = {
   definitionID?: string
 }
-
-const StyledRowMenu = styled(Row)`
-  padding-bottom: 15px;
-`
 
 const StyledColMenu = styled(Col)`
   display: flex;
   align-items: end;
 `
 
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
 const DataSetPage = () => {
   const { accessPermission } = useUser()
 
@@ -639,12 +628,9 @@ const DataSetPage = () => {
                       : ''
                   }" dataset ?`}
                   description="All of reference dataset of this dataset will be deleted too."
-                  icon={<StyledExclamationCircleOutlined />}
                   okText="Delete"
-                  cancelText="Cancel"
                   showModal={showConfirmationModal}
                   modalLoading={confirmationModalLoading}
-                  okType="danger"
                   onOk={() => {
                     if (showVerifyModal) {
                       handleDeleteImport()
@@ -665,12 +651,9 @@ const DataSetPage = () => {
                     selectedRecord?.text ? selectedRecord?.text : ''
                   }" definition ?`}
                   description="All of reference dataset of this definition will be deleted too."
-                  icon={<StyledExclamationCircleOutlined />}
                   okText="Delete"
-                  cancelText="Cancel"
                   showModal={showConfirmationBulkModal}
                   modalLoading={confirmationBulkModalLoading}
-                  okType="danger"
                   onOk={() => {
                     if (isMultipleSelect) {
                       handleBulkDeleteDataSet()

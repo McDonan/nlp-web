@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Input, Modal, Row, Select, Space, Alert } from 'antd'
+import { Col, Form, Input, Modal, Row, Select, Space } from 'antd'
 import Button from 'antd-button-color'
 import { Definition, DefinitionForm } from '../../../types/definition'
 import DataSetByDefinitionIDTable from './DataSetByDefinitionIDTable'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
 import CloseModalButton from '../../../components/CloseModalButton'
+
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
 
 const { TextArea } = Input
 
@@ -17,14 +21,6 @@ type Props = {
   onCloseModal: () => void
   onLoadingModal: (isLoading: boolean) => void
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const DefinitionFormModal = ({
   data,

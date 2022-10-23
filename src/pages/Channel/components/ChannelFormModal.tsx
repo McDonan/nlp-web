@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Input, Modal, Row, Space, Alert } from 'antd'
+import { Col, Form, Input, Modal, Row, Space } from 'antd'
 import Button from 'antd-button-color'
 import { Channel, ChannelForm } from '../../../types/channel'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
 
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
+
 type Props = {
   data?: Channel | undefined
-  showModal: boolean
-  modalLoading: boolean
+  showModal: boolean //isShowModal
+  modalLoading: boolean //isModalLoading
   onSubmit: (data: ChannelForm | undefined, id?: string) => void
   onCloseModal: () => void
   onLoadingModal: (isLoading: boolean) => void
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const ChannelFormModal = ({
   data,
@@ -41,7 +37,8 @@ const ChannelFormModal = ({
   }
 
   const [form] = Form.useForm()
-  const isEdit = Boolean(data?.id ?? false)
+  const isEdit = Boolean(data?.id ?? false) ///?/// typeOf(data.id) might not be Boolean
+
   const handleCreateOrUpdateChannel = () => {
     onLoadingModal(true)
     form
@@ -72,7 +69,7 @@ const ChannelFormModal = ({
       getContainer={false}
     >
       <Row>
-        <Col span={isEdit ? 24 : 24}>
+        <Col span={24}>
           <Form
             form={form}
             onFinish={handleCreateOrUpdateChannel}

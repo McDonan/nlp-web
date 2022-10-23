@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Modal, Row, Space, Alert } from 'antd'
+import { Col, Form, Modal, Row, Space } from 'antd'
 import Button from 'antd-button-color'
 import { DataSetBulkEditFormParams } from '../../../types/dataset'
 import DefinitionSelectField from './DefinitionSelectField'
 import { DefinitionOnly } from '../../../types/definition'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
+
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
 
 type Props = {
   showModal: boolean
@@ -17,14 +21,6 @@ type Props = {
   definitionList: DefinitionOnly[] | undefined
   definitionLoading: boolean
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const DataSetBulkFormModal = ({
   showModal,

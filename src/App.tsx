@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { Layout, Spin } from 'antd'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
-import MenuHeader from './components/MenuHeader'
+import MenuHeader from './components/MenuHeader/MenuHeader'
 import './App.css'
 import { useUser } from './hooks/useUser'
 import AccessFilter from './components/AccessFilter'
@@ -126,8 +126,22 @@ const App: React.FC = () => {
                   </AccessFilter>
                 }
               />
-              <Route path="/login" element={<AccessFilter><LoginPage /></AccessFilter>} />
-              <Route path='*' element={<AccessFilter><NotFound type={404}/></AccessFilter>} />
+              <Route
+                path="/login"
+                element={
+                  <AccessFilter>
+                    <LoginPage />
+                  </AccessFilter>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <AccessFilter>
+                    <NotFound type={404} />
+                  </AccessFilter>
+                }
+              />
             </Routes>
           </StyledContainer>
         </StyledLayout>

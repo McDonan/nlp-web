@@ -1,13 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Col, Popover, Row, Space, Spin, Typography } from 'antd'
+import { Col, Popover, Row, Space, Spin } from 'antd'
 import Button from 'antd-button-color'
-import {
-  ExportOutlined,
-  FileTextOutlined,
-  FileExcelOutlined,
-} from '@ant-design/icons'
+import { ExportOutlined } from '@ant-design/icons'
 import { EXPORT_TYPE } from '../configs/constants'
+
+import {
+  StyledFileExcelOutlined,
+  StyledFileTextOutlined,
+  StyledTitle,
+  StyledCard,
+} from './StyledComponents'
 
 type Props = {
   title: string
@@ -16,37 +19,11 @@ type Props = {
   onExport: (isExport: boolean, type: string) => void
 }
 
-type StyledCardProps = {
-  background: string
-}
-
 const StyledExportSelectButton = styled(Button)`
   background: #556ee6;
   &:hover {
     background: #778beb;
   }
-`
-
-const StyledCard = styled(Card)<StyledCardProps>`
-  background: ${(props: { background: string }) => props.background};
-  width: 100%;
-  height: 100%;
-  color: #ffffff;
-  text-align: center;
-`
-
-const StyledTitle = styled(Typography.Title)`
-  color: #ffffff !important;
-`
-
-const StyledFileTextOutlined = styled(FileTextOutlined)`
-  font-size: 30px;
-  color: #ffffff;
-`
-
-const StyledFileExcelOutlined = styled(FileExcelOutlined)`
-  font-size: 30px;
-  color: #ffffff;
 `
 
 const ExportSelectButton = ({

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Form, Input, Modal, Row, Space, Alert, Tag } from 'antd'
+import { Col, Form, Input, Modal, Row, Space, Tag } from 'antd'
 import Button from 'antd-button-color'
 import { PlusOutlined } from '@ant-design/icons'
 import { KnowledgeForm, Knowledge } from '../../../types/knowledge'
 import KnowledgeMembersTable from './KnowledgeMembersTable'
 import CloseModalButton from '../../../components/CloseModalButton'
 import { useErrorMessage } from '../../../hooks/useErrorMessage'
+
+import {
+  StyledAlert,
+  StyledColContainer,
+} from '../../../components/StyledComponents'
 
 type Props = {
   data?: Knowledge | undefined
@@ -16,15 +20,6 @@ type Props = {
   onCloseModal: () => void
   onLoadingModal: (isLoading: boolean) => void
 }
-
-const StyledColContainer = styled(Col)`
-  text-align: center;
-`
-
-const StyledAlert = styled(Alert)`
-  text-align: center;
-  margin-top: 20px;
-`
 
 const KnowledgeModal = ({
   data,

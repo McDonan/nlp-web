@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { Col, Row, Space, Input, Spin, Alert } from 'antd'
+import { Col, Space, Spin, Alert } from 'antd'
 import Button from 'antd-button-color'
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 import {
   useKnowledge,
   useExportKnowledge,
@@ -26,23 +25,11 @@ import {
 import { useUser } from '../../hooks/useUser'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 
-const { Search } = Input
-
-const StyledRowMenu = styled(Row)`
-  padding-bottom: 15px;
-`
-const StyledColSearch = styled(Col)`
-  text-align: right;
-`
-
-const StyledSearch = styled(Search)`
-  width: 250px;
-`
-
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
+import {
+  StyledRowMenu,
+  StyledColSearch,
+  StyledSearch,
+} from '../../components/StyledComponents'
 
 const KnowledgePage = (): JSX.Element => {
   //Got Userpermission
@@ -190,6 +177,7 @@ const KnowledgePage = (): JSX.Element => {
   const handleDownloadFile = () => {
     let success = false
     let conditionPass = false
+
     if (
       isExport &&
       exportType &&
@@ -201,6 +189,7 @@ const KnowledgePage = (): JSX.Element => {
       conditionPass = true
       success = downloadFileFromBlob(dataExportFile, 'knowledge', exportType)
     }
+
     if (success) {
       setIsExport(false)
     } else if (conditionPass) {
@@ -262,12 +251,9 @@ const KnowledgePage = (): JSX.Element => {
                   selectedRecord?.name ? selectedRecord?.name : ''
                 }" knowledge ?`}
                 description="All reference of this knowledge will be deleted too."
-                icon={<StyledExclamationCircleOutlined />}
                 okText="Delete"
-                cancelText="Cancel"
                 showModal={showConfirmationModal}
                 modalLoading={confirmationModalLoading}
-                okType="danger"
                 onOk={() => {
                   if (selectedRecord?.id) {
                     handleConfirmationModalLoading(true)

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Input, Space, Spin, Alert } from 'antd'
+import { Col, Input, Space, Spin, Alert } from 'antd'
 import Button from 'antd-button-color'
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import UserFromModal from './components/UserFromModal'
+import { PlusOutlined } from '@ant-design/icons'
+
+import UserFormModal from './components/UserFormModal'
 import ExportButton from '../../components/ExportButton'
-import styled from 'styled-components'
 import UserTable from './components/UserTable'
 import { useErrorMessage } from '../../hooks/useErrorMessage'
 import { User, UserForm, UserSort, UserStatusBody } from '../../types/users'
 import { downloadFileFromBlob } from '../../utils/file'
 import { PAGES, LIMIT, DEFAULT_PAGE_SIZE } from '../../configs/constants'
 import ConfirmationAndReasonModal from '../../components/ConfirmationAndReasonModal'
+import { StyledRow } from '../../components/StyledComponents'
 
 import {
   useGetUser,
@@ -24,15 +25,6 @@ import {
 import { useUser } from '../../hooks/useUser'
 
 const { Search } = Input
-
-const StyledRow = styled(Row)`
-  padding-bottom: 15px;
-`
-
-const StyledExclamationCircleOutlined = styled(ExclamationCircleOutlined)`
-  font-size: 22px;
-  color: #fbb437;
-`
 
 const UserPage = () => {
   //Hook Call
@@ -76,7 +68,7 @@ const UserPage = () => {
   //Reason when inactive
   const [reasonText, setReasonText] = useState<string>()
 
-  //API GET callin
+  //API GET calling
   const { data, isLoading, isRefetching } = useGetUser({
     page: pageNumber,
     limit: pageSizeNumber,
@@ -142,6 +134,7 @@ const UserPage = () => {
     setSelectedRecord(undefined)
     handleOpenModal(true)
   }
+
   //Update User Function
   const handleUpdateUser = (data: UserForm | undefined, id: string) => {
     if (data && id) {
@@ -269,7 +262,7 @@ const UserPage = () => {
         </Col>
       </StyledRow>
       {showModal && (
-        <UserFromModal
+        <UserFormModal
           data={selectedRecord}
           userRolesData={userRolesData ?? undefined}
           isModalLoading={
@@ -284,27 +277,10 @@ const UserPage = () => {
       )}
       {showConfirmationModal && (
         <ConfirmationAndReasonModal
-          title={`Are you sure you would like to change status user "${
-            selectedRecord?.name ? selectedRecord?.name : ''
-          }" ?`}
-          description={`${
-            selectedRecord?.name ? selectedRecord?.name : 'User'
-          }'s status will change to ${toStatus ? 'active' : 'inactive'}. ${
-            !toStatus
-              ? `Please specify the reason for disabling User ${
-                  selectedRecord?.name ? selectedRecord?.name : 'name not found'
-                } (${
-                  selectedRecord?.employee_id ? selectedRecord?.employee_id : ''
-                }).`
-              : ''
-          }`}
-          icon={<StyledExclamationCircleOutlined />}
-          okText="Change"
-          cancelText="Cancel"
+          selectedRecord={selectedRecord}
           showModal={showConfirmationModal}
           modalLoading={confirmationModalLoading}
-          requireReason={!toStatus}
-          okType="primary"
+          toStatus={toStatus}
           setReasonText={setReasonText}
           onOk={() => {
             handleUpdateStatus(selectedRecord?.id, toStatus, reasonText)

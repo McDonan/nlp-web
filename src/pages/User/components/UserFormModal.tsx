@@ -29,7 +29,7 @@ const StyledAlert = styled(Alert)`
   margin-top: 20px;
 `
 
-const UserFromModal = ({
+const UserFormModal = ({
   data,
   showModal,
   userRolesData,
@@ -77,19 +77,19 @@ const UserFromModal = ({
   const [selectedChannel, setSelectedChannel] = useState<Array<string>>(
     initialData.channel_ids ?? []
   )
-  channelData?.items.map((channl) => {
-    if (channl.active) {
+  channelData?.items.map((channel) => {
+    if (channel.active) {
       childrenChannel.push(
-        <Option value={channl.id} key={channl.id}>
-          {channl.name}
+        <Option value={channel.id} key={channel.id}>
+          {channel.name}
         </Option>
       )
-    } else if (initialData.channel_ids?.includes(channl.id)) {
+    } else if (initialData.channel_ids?.includes(channel.id)) {
       childrenChannel.push(
         <>
-          {selectedChannel.includes(channl.id) && (
-            <Option value={channl.id} key={channl.id} disabled>
-              {channl.name}
+          {selectedChannel.includes(channel.id) && (
+            <Option value={channel.id} key={channel.id} disabled>
+              {channel.name}
             </Option>
           )}
         </>
@@ -316,4 +316,4 @@ const UserFromModal = ({
     </Modal>
   )
 }
-export default UserFromModal
+export default UserFormModal
